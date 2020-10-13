@@ -1,0 +1,53 @@
+.list {
+  background-color: #555;
+}
+
+.list:nth-child(3) {
+  grid-column: span 2;
+}
+
+.list h3 {
+  background-color: #444;
+  padding: 16px;
+  line-height: 1;
+}
+
+.list ul {
+  padding: 16px;
+  /* display: flex;
+  flex-wrap: wrap;
+  flex-direction: column; */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.list:last-child ul {
+  /* display: grid; */
+  grid-template-columns: repeat(6, 1fr);
+
+}
+
+
+.list:last-child {
+  margin-right: 0;
+}
+
+.list li {
+  padding: 8px 12px;
+  /* flex: 0 1 50%; */
+}
+
+.list li button {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  line-height: inherit;
+  text-align: left;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: color .2s;
+}
+.list li button:hover {
+  color: orange;
+}

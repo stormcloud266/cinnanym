@@ -1,0 +1,34 @@
+.app {
+  background-color: #2A333C;
+  min-height: 100vh;
+  color: white;
+  padding-bottom: 40px;
+}
+
+.textContainer {
+  height: 80px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.textContainer p {
+  opacity: .7;
+  font-style: italic;
+}
+
+.textContainer h2 {
+  font-size: 2.2rem;
+  line-height: 1.2;
+}
+
+.flex {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
