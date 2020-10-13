@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import './App.css';
+import React, {useState} from 'react'
+import './App.css'
 import axios from 'axios'
 
 function App() {
@@ -10,23 +10,19 @@ function App() {
   const [state, setState] = useState({
     rhymes: [],
     synonyms: [],
-    similar: []
+    similarTo: []
   })
-
 
   const submitSearch = (e) => {
     e.preventDefault()
     const word = e.target.search.value
-
-    getRhymes(word)
-    getSynonyms(word)
-    getSimilar(word)
+    handleGetData(word)
   }
 
-  const handleClick = (word) => {
-    getRhymes(word)
-    getSynonyms(word)
-    getSimilar(word)
+  const handleGetData = (word) => {
+    getData(word, 'synonyms')
+    getData(word, 'similarTo')
+    getData(word, 'rhymes')
   }
 
   const headers = {
@@ -34,37 +30,25 @@ function App() {
     "x-rapidapi-key": process.env.REACT_APP_WORDS_API_KEY
   }
 
-  const url = `https://wordsapiv1.p.rapidapi.com/words`
-
-  const getRhymes = (word) => {
-    axios.get(`${url}/${word}/rhymes`, { headers })
+  const getData = (word, searchType) => {
+    axios.get(`https://wordsapiv1.p.rapidapi.com/words/${word}/${searchType}`, { headers })
       .then(res => {
+
+        let arr
+        
+        if (searchType === 'rhymes' && res.data.rhymes.all) {
+          arr = res.data.rhymes.all
+        } else if (searchType === 'rhymes') {
+          arr = []
+        } else {
+          arr = res.data[searchType]
+        }
+
         setState(prevState => ({
           ...prevState,
-          rhymes: res.data.rhymes.all
-      }));
-      })
-      .catch(err => console.log(err))
-  }
-
-  const getSynonyms = (word) => {
-    axios.get(`${url}/${word}/synonyms`, { headers })
-      .then(res => {
-        setState(prevState => ({
-          ...prevState,
-          synonyms: res.data.synonyms
-      }));
-      })
-      .catch(err => console.log(err))
-  }
-
-  const getSimilar = (word) => {
-    axios.get(`${url}/${word}/similarTo`, { headers })
-      .then(res => {
-        setState(prevState => ({
-          ...prevState,
-          similar: res.data.similarTo
+          [searchType]: arr
         }));
+        
       })
       .catch(err => console.log(err))
   }
@@ -88,7 +72,7 @@ function App() {
               {
                 state.synonyms.length > 0 && state.synonyms.map((word, i) => (
                   <li key={i}>
-                    <button onClick={() => handleClick(word)}>{word}</button>
+                    <button onClick={() => handleGetData(word)}>{word}</button>
                   </li>
                 ))
               }
@@ -99,9 +83,9 @@ function App() {
             <h3>Similar</h3>
             <ul>
               {
-                state.similar.length > 0 && state.similar.map((word, i) => (
+                state.similarTo.length > 0 && state.similarTo.map((word, i) => (
                   <li key={i}>
-                    <button onClick={() => handleClick(word)}>{word}</button>
+                    <button onClick={() => handleGetData(word)}>{word}</button>
                   </li>
                 ))
               }
@@ -114,7 +98,7 @@ function App() {
               {
                 state.rhymes.length > 0 && state.rhymes.map((word, i) => (
                   <li key={i}>
-                    <button onClick={() => handleClick(word)}>{word}</button>
+                    <button onClick={() => handleGetData(word)}>{word}</button>
                   </li>
                 ))
               }
