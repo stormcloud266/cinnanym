@@ -4,6 +4,11 @@ import styles from './List.module.css'
 const List = ({ title, list, handleGetData }) => {
   const [isShown, showAll] = useState(false)
 
+  const onClick = (word) => {
+    window.scrollTo({top: 0 })
+    handleGetData(word)
+  }
+
   useEffect(() => { 
     showAll(false) 
   }, [list])
@@ -19,7 +24,7 @@ const List = ({ title, list, handleGetData }) => {
           {
             (list.length > 0) && list.slice(0, 30).map((word, i) => (
               <li key={i}>
-                <button onClick={() => handleGetData(word)}>{word}</button>
+                <button onClick={() => onClick(word)}>{word}</button>
               </li>
             ))
           }
@@ -27,11 +32,11 @@ const List = ({ title, list, handleGetData }) => {
           {
             (list.length > 30 && isShown) && list.slice(30).map((word, i) => (
               <li key={i}>
-                <button onClick={() => handleGetData(word)}>{word}</button>
+                <button onClick={() => onClick(word)}>{word}</button>
               </li>
             ))
           }
-        </ul>
+          </ul>
         )
       }
      

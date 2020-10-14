@@ -65,7 +65,7 @@ function App() {
         {
           state.searchTerm && (
             <div>
-              <p>Your search term</p>
+              <p>You searched for</p>
               <h2>{state.searchTerm}</h2>
             </div>
           )
