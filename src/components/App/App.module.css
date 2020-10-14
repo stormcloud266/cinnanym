@@ -1,34 +1,40 @@
 .app {
-  background-color: #2A333C;
   min-height: 100vh;
   color: white;
-  padding-bottom: 40px;
+  padding-bottom: 80px;
 }
 
 .textContainer {
-  height: 80px;
-  margin-bottom: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90px;
+  margin-bottom: 40px;
   text-align: center;
 }
 
 .textContainer p {
   opacity: .7;
   font-style: italic;
+  margin-bottom: 8px;
 }
 
 .textContainer h2 {
   font-size: 2.2rem;
   line-height: 1.2;
+  color: #DFDFE2;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .flex {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  max-width: 1200px;
+  /* grid-template-columns: repeat(1, 1fr); */
+  gap: 60px;
+  align-items: flex-start;
+  max-width: 1160px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 20px;
   padding-right: 20px;
 }
-

@@ -37,7 +37,7 @@ function App() {
   const getData = (word) => {
 
     const dev = process.env.NODE_ENV === 'development'
-    const url = dev ? 'http://localhost:9000/getRhymes' : '/.netlify/functions/getRhymes'
+    const url = dev ? 'http://localhost:9000/getData' : '/.netlify/functions/getData'
 
     axios.get(url, { params: { word } })
 
@@ -69,8 +69,14 @@ function App() {
       <Form submitSearch={submitSearch} />
 
       <div className={styles.textContainer}>
-        <p>Searching for...</p>
-        <h2>{state.searchTerm}</h2>
+        {
+          state.searchTerm && (
+            <div>
+              <p>Your search term</p>
+              <h2>{state.searchTerm}</h2>
+            </div>
+          )
+        }
       </div>
 
       <div className={styles.flex}>

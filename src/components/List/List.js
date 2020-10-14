@@ -11,26 +11,38 @@ const List = ({ title, list, handleGetData }) => {
   return (
     <div className={styles.list}>
       <h3>{title}</h3>
-      <ul>
-        {
-          (list.length > 0) && list.slice(0, 30).map((word, i) => (
-            <li key={i}>
-              <button onClick={() => handleGetData(word)}>{word}</button>
-            </li>
-          ))
-        }
-
-        {
-          (list.length > 30 && isShown) && list.slice(30).map((word, i) => (
-            <li key={i}>
-              <button onClick={() => handleGetData(word)}>{word}</button>
-            </li>
-          ))
-        }
-      </ul>
+      {
+        list.length === 0 ? (
+          <p className={styles.placeholder}>Looks like there's nothing here.</p>
+        ) : (
+          <ul>
+          {
+            (list.length > 0) && list.slice(0, 30).map((word, i) => (
+              <li key={i}>
+                <button onClick={() => handleGetData(word)}>{word}</button>
+              </li>
+            ))
+          }
+  
+          {
+            (list.length > 30 && isShown) && list.slice(30).map((word, i) => (
+              <li key={i}>
+                <button onClick={() => handleGetData(word)}>{word}</button>
+              </li>
+            ))
+          }
+        </ul>
+        )
+      }
+     
       {
         (list.length > 30 && !isShown) && (
-          <button onClick={() => showAll(true)}>show all</button>
+          <button 
+            onClick={() => showAll(true)}
+            className={styles.readMore}
+          >
+            Show All
+          </button>
         )
       }
     </div>

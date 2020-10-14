@@ -1,26 +1,29 @@
 .form {
   text-align: center;
-  padding: 40px;
+  padding: 60px 20px 40px;
+  color: #C9C9CF;
+  display: flex;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .form input,
 .form button {
-  background-color: rgba(255, 255, 255, .2);
-  padding: 12px 24px;
+  padding: 8px 24px;
   border: none;
   outline: none;
   color: inherit;
-  font-family: inherit;
-  font-size: inherit;
 }
 
 .form input {
   border-radius: 40px 0 0 40px;
   width: 100%;
-  max-width: 320px;
+  background-color: var(--color-item-bg);
 }
+
 .form button {
-  background-color: rgba(255, 255, 255, .1);
+  background-color: var(--color-section-header);
   border-radius: 0 40px 40px 0;
   cursor: pointer;
   text-transform: uppercase;

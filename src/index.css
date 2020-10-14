@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Sansita+Swashed:wght@600&display=swap');
+:root {
+  --color-main-bg: #28262c;
+  --color-section-bg: #323036;
+  --color-main-header: #59363D;
+  --color-section-header: #3B3A41;
+  --color-item-bg: #44434C;
+}
 * {
   margin: 0;
   padding: 0;
@@ -6,13 +14,27 @@
 body {
   margin: 0;
   line-height: 1.6;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-main-bg);
+  font-family: 'Lato', sans-serif;
+  color: #C9C9CF;
+}
+
+h1 {
+  font-family: 'Sansita Swashed', cursive;
 }
 
 li {
   list-style: none;
+}
+
+button,
+input {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  line-height: inherit;
+}
+
+button {
+  cursor: pointer;
 }
