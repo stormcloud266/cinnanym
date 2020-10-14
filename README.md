@@ -4,7 +4,8 @@ This is a related words finder app built on React using the [WordsAPI](https://w
 
 [View Site](https://cinnanym.netlify.app/)
 
-![](https://github.com/stormcloud266/cinnanym/blob/main/screenshot.png)
+<img src="https://github.com/stormcloud266/cinnanym/blob/main/screenshot.png" alt="cinnanym home page." width="600"/>
+
 
 ## Tech Details
 This project is built with [Create React App](https://create-react-app.dev/), uses [Netlify](https://www.netlify.com/) for hosting and Netlify's lambda functions for backend services. It's styled using CSS modules.
