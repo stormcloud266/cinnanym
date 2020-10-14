@@ -2,6 +2,7 @@
   min-height: 100vh;
   color: white;
   padding-bottom: 80px;
+  overflow-x: hidden;
 }
 
 .textContainer {
@@ -20,16 +21,15 @@
 }
 
 .textContainer h2 {
-  font-size: 2.2rem;
+  font-size: 36px;
   line-height: 1.2;
   color: #DFDFE2;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
 
-.flex {
+.listContainer {
   display: grid;
-  /* grid-template-columns: repeat(1, 1fr); */
   gap: 60px;
   align-items: flex-start;
   max-width: 1160px;
@@ -37,4 +37,20 @@
   margin-right: auto;
   padding-left: 20px;
   padding-right: 20px;
+}
+
+@media screen and (max-width: 400px) {
+  .listContainer {
+    gap: 48px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .textContainer {
+    height: 60px;
+    margin-bottom: 30px;
+  }
+  .textContainer h2 {
+    font-size: 28px;
+  }
 }

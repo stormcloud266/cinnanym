@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios'
+
+// Components
 import Form from '../Form/Form'
 import Header from '../Header/Header'
 import List from '../List/List'
@@ -15,12 +17,14 @@ function App() {
   }) 
 
   const handleGetData = (word) => {
-
+    
+    // Adds form submission word to state 
     setState(prevState => ({
       ...prevState,
       searchTerm: word
     }))
 
+    // Encodes word for URLs
     const searchTerm = encodeURI(word)
 
     getData(searchTerm)
@@ -28,18 +32,20 @@ function App() {
 
 
   const getData = (searchTerm) => {
-
-    console.log('getData running')
-
+    
+    // Set endpoint URL depending on environment
     const dev = process.env.NODE_ENV === 'development'
     const url = dev ? 'http://localhost:9000/getData' : '/.netlify/functions/getData'
 
+    // Makes call to lambda function with submitted word
     axios.get(url, { params: { searchTerm } })
 
       .then(res => {
 
+        // Throws error if submission returns no results
         if (res.data.error) throw new Error();
-
+        
+        // If there are results, add them to state
         setState(prevState => ({
           ...prevState,
           ...res.data
@@ -47,6 +53,8 @@ function App() {
 
       })
       .catch(err => {
+        
+        // Resets list but keeps search word on errors
         setState(prevState => ({
           ...prevState,
           rhymes: [],
@@ -65,6 +73,7 @@ function App() {
 
       <div className={styles.textContainer}>
         {
+          // Displays search word when submitted
           state.searchTerm && (
             <div>
               <p>You searched for</p>
@@ -74,7 +83,7 @@ function App() {
         }
       </div>
 
-      <div className={styles.flex}>
+      <div className={styles.listContainer}>
 
         <List
           title={'Synonyms'}
