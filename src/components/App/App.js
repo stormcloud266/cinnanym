@@ -12,14 +12,7 @@ function App() {
     synonyms: [],
     similarTo: [],
     searchTerm: ''
-  })
-
-  const submitSearch = (e) => {
-    e.preventDefault()
-    const word = e.target.search.value.trim().replace(/[^a-zA-Z -]/g, "")
-    handleGetData(word)
-    e.target.search.value = ''
-  }
+  }) 
 
   const handleGetData = (word) => {
 
@@ -34,12 +27,12 @@ function App() {
   }
 
 
-  const getData = (word) => {
+  const getData = (searchTerm) => {
 
     const dev = process.env.NODE_ENV === 'development'
     const url = dev ? 'http://localhost:9000/getData' : '/.netlify/functions/getData'
 
-    axios.get(url, { params: { word } })
+    axios.get(url, { params: { searchTerm } })
 
       .then(res => {
 
@@ -66,7 +59,7 @@ function App() {
     
       <Header />
 
-      <Form submitSearch={submitSearch} />
+      <Form handleGetData={handleGetData} />
 
       <div className={styles.textContainer}>
         {
