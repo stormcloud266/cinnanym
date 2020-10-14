@@ -29,6 +29,8 @@ function App() {
 
   const getData = (searchTerm) => {
 
+    console.log('getData running')
+
     const dev = process.env.NODE_ENV === 'development'
     const url = dev ? 'http://localhost:9000/getData' : '/.netlify/functions/getData'
 
