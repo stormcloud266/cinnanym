@@ -6,9 +6,6 @@ import List from '../List/List'
 import styles from './App.module.css'
 
 function App() {
-  // https://wordsapiv1.p.rapidapi.com/words/bloody/similarTo
-  // https://wordsapiv1.p.rapidapi.com/words/lovely/synonyms
-  // https://wordsapiv1.p.rapidapi.com/words/word/rhymes
 
   const [state, setState] = useState({
     rhymes: [],
@@ -19,8 +16,9 @@ function App() {
 
   const submitSearch = (e) => {
     e.preventDefault()
-    const word = e.target.search.value
+    const word = e.target.search.value.trim().replace(/[^a-zA-Z -]/g, "")
     handleGetData(word)
+    e.target.search.value = ''
   }
 
   const handleGetData = (word) => {
@@ -30,42 +28,42 @@ function App() {
       searchTerm: word
     }))
 
-    getData(word, 'synonyms')
-    getData(word, 'similarTo')
-    getData(word, 'rhymes')
+    const searchTerm = encodeURI(word)
+
+    getData(searchTerm)
   }
 
-  const headers = {
-    "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
-    "x-rapidapi-key": process.env.REACT_APP_WORDS_API_KEY
-  }
 
-  const getData = (word, searchType) => {
-    axios.get(`https://wordsapiv1.p.rapidapi.com/words/${word}/${searchType}`, { headers })
+  const getData = (word) => {
+
+    const dev = process.env.NODE_ENV === 'development'
+    const url = dev ? 'http://localhost:9000/getRhymes' : '/.netlify/functions/getRhymes'
+
+    axios.get(url, { params: { word } })
+
       .then(res => {
 
-        let arr
-        
-        if (searchType === 'rhymes' && res.data.rhymes.all) {
-          arr = res.data.rhymes.all
-        } else if (searchType === 'rhymes') {
-          arr = []
-        } else {
-          arr = res.data[searchType]
-        }
+        if (res.data.error) throw new Error();
 
         setState(prevState => ({
           ...prevState,
-          [searchType]: arr
-        }));
+          ...res.data
+        }))
 
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        setState(prevState => ({
+          ...prevState,
+          rhymes: [],
+          synonyms: [],
+          similarTo: [],
+        }))
+      })
   }
 
   return (
     <div className={styles.app}>
-      
+    
       <Header />
 
       <Form submitSearch={submitSearch} />
