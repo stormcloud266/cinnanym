@@ -1,7 +1,5 @@
 .form {
-  text-align: center;
   padding: 60px 20px 40px;
-  color: #C9C9CF;
   display: flex;
   max-width: 520px;
   margin-left: auto;
@@ -25,7 +23,6 @@
 .form button {
   background-color: var(--color-section-header);
   border-radius: 0 40px 40px 0;
-  cursor: pointer;
   text-transform: uppercase;
 }
 

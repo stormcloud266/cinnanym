@@ -1,7 +1,5 @@
 .app {
   min-height: 100vh;
-  color: white;
-  padding-bottom: 80px;
   overflow-x: hidden;
 }
 
@@ -23,15 +21,11 @@
 .textContainer h2 {
   font-size: 36px;
   line-height: 1.2;
-  color: #DFDFE2;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
 
 .listContainer {
-  display: grid;
-  gap: 60px;
-  align-items: flex-start;
   max-width: 1160px;
   margin-left: auto;
   margin-right: auto;
@@ -41,7 +35,6 @@
 
 @media screen and (max-width: 400px) {
   .listContainer {
-    gap: 48px;
     padding-left: 12px;
     padding-right: 12px;
   }

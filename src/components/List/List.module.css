@@ -2,8 +2,8 @@
   background-color: var(--color-section-bg);
   border-radius: 4px;
   overflow: hidden;
+  margin-bottom: 60px;
 }
-
 
 .list h3 {
   background-color: var(--color-section-header);
@@ -58,7 +58,6 @@
 .placeholder {
   text-align: center;
   padding: 12px;
-  color: #d8d7e2;
 }
 
 @media screen and (max-width: 800px) {
@@ -68,6 +67,10 @@
 }
 
 @media screen and (max-width: 400px) {
+  .list {
+    margin-bottom: 48px;
+  }
+
   .list ul {
     padding: 12px;
     gap: 12px;  
